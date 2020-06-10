@@ -10,13 +10,27 @@ class App extends React.Component {
     super();
     this.state = {
       filter: 'None',
-      bugs: exampleData,
+      // bugs: exampleData,
+      bugs: [],
     };
     this.filterHandler = this.filterHandler.bind(this);
+    this.getBugs = this.getBugs.bind(this);
+  }
+
+  componentDidMount(){
+    this.getBugs();
   }
 
   filterHandler(filter) {
     this.setState({ filter });
+  }
+
+  getBugs(){
+    fetch('http://localhost:3000/api/bugs')
+      .then(res => res.json())
+      // .then(data => console.log(data))
+      .then(data => this.setState({bugs: data}))
+      .catch(err => console.log('Error on getBugs= ', err))
   }
 
   render() {
