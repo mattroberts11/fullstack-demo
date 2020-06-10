@@ -16,6 +16,7 @@ class App extends React.Component {
   }
 
   filterHandler(filter) {
+    console.log(filter);
     this.setState({ filter });
   }
 
@@ -25,20 +26,51 @@ class App extends React.Component {
         <Nav
           filterHandler={this.filterHandler}
         />
-        {this.state.bugs.map((bug) => (
-          <BugTile
-            bugName={bug.bugName}
-            bugDescription={bug.bugDescription}
-            reportedBy={bug.reportedBy}
-            createdDate={bug.createdDate}
-            assignedTo={bug.assignedTo}
-            threatLevel={bug.threatLevel}
-            key={bug.bugName}
-          />
-        ))}
+        {
+          this.state.filter === 'None'
+          ?
+            this.state.bugs.map((bug) => (
+                <BugTile
+                  bugName={bug.bugName}
+                  bugDescription={bug.bugDescription}
+                  reportedBy={bug.reportedBy}
+                  createdDate={bug.createdDate}
+                  assignedTo={bug.assignedTo}
+                  threatLevel={bug.threatLevel}
+                  key={bug.bugName}
+                />
+                ))
+          :
+              this.state.bugs
+                .filter(threat => threat.threatLevel === this.state.filter)
+                .map((bug) => (
+                <BugTile
+                  bugName={bug.bugName}
+                  bugDescription={bug.bugDescription}
+                  reportedBy={bug.reportedBy}
+                  createdDate={bug.createdDate}
+                  assignedTo={bug.assignedTo}
+                  threatLevel={bug.threatLevel}
+                  key={bug.bugName}
+                />
+                ))
+        }
       </table>
     );
   }
 }
 
 export default App;
+
+
+
+// this.state.bugs.map((bug) => (
+//   <BugTile
+//     bugName={bug.bugName}
+//     bugDescription={bug.bugDescription}
+//     reportedBy={bug.reportedBy}
+//     createdDate={bug.createdDate}
+//     assignedTo={bug.assignedTo}
+//     threatLevel={bug.threatLevel}
+//     key={bug.bugName}
+//   />
