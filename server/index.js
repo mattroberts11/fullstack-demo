@@ -11,6 +11,12 @@ app.use(cors());
 app.use(bp.json());
 app.use(bp.urlencoded({extended: false}));
 
+app.get('/api/bugs', (req, res) => {
+  let allBugs = Bug.find( (err, bug) => {
+    if(err) console.log('Error on get');
+    res.status(200).send(bug);
+  })
+})
 
 app.post('/api/bugs', (req, res) => {
   let postBug = new Bug(req.body)
