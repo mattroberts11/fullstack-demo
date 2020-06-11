@@ -3,7 +3,7 @@ table {
   margin: 25px auto;
   border-collapse: collapse;
   border: 1px solid #eee;
-  border-bottom: 2px solid #00cccc;
+  border-bottom: 2px solid #0c77be;
   box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
      0px 10px 20px rgba(0,0,0,0.05),
      0px 20px 20px rgba(0,0,0,0.05),
@@ -25,13 +25,20 @@ table {
     max-width: 400px;
   }
   th {
-    background: #00cccc;
+    background: #0c77be;
     color: #fff;
     text-transform: uppercase;
     font-size: 12px;
     &.last {
       border-right: none;
     }
+  }
+  th label {
+    color: #fff;
+  }
+  th input[type=text] {
+    padding: 0px;
+    margin: 5px;
   }
 }
 .modal {
@@ -59,4 +66,34 @@ table {
 
 .display-none {
   display: none;
+}
+
+input[type=text], select {
+  padding:10px;
+  margin:10px 5px; // add top and bottom margin
+  border: 2px solid #999;
+  border-radius:5px;
+  display: block;
+  width: 80%;
+}
+
+label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #666666;
+}
+button {
+  padding: 10px;
+  margin:10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background-color: rgb(60, 111, 189);
+  border-radius: 5px;
+  border:1px solid grey;
+}
+fieldset {
+  border: none;
+  padding: 10px;
 }

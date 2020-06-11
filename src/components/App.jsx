@@ -20,6 +20,8 @@ class App extends React.Component {
     this.getBugs = this.getBugs.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.createBug = this.createBug.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount(){
@@ -46,15 +48,35 @@ class App extends React.Component {
       .catch(err => console.log('Error on getBugs= ', err))
   }
 
+  handleSubmit(e){
+    alert(JSON.stringify(this.state))
+    e.preventDefault();
+  }
+
+  createBug(){
+    fetch('http://localhost:3000/api/bugs', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer',
+      body:JSON.stringify(data),
+      })
+      .then(res => res.json())
+      .catch((err) => {
+        console.log('Error: ', err);
+      })
+  }
+
   render() {
     return (
       <main>
       <Modal show={this.state.show} handleClose={this.hideModal}>
-        <p>Model</p>
-        <p>Data</p>
+        <form onSubmit={this.handleSubmit}>
+
+        </form>
       </Modal>
       <button type="button" onClick={this.showModal}>
-        Open
+        Add Bug
       </button>
 
       <table>
