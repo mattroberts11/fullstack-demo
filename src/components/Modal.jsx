@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Modal = ({handleClose, show, children}) => {
+const Modal = ({handleClose, show, create}) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
   return (
     <div className={showHideClassName}>
@@ -41,7 +41,7 @@ const Modal = ({handleClose, show, children}) => {
         <option value="Critical" id="Critical">Critical</option>
       </select>
     </fieldset>
-    <button type="submit">Submit New Bug</button>
+    <button onClick={create}>Submit New Bug</button>
 
         <button onClick={handleClose}>Close</button>
       </section>

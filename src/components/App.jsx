@@ -14,7 +14,15 @@ class App extends React.Component {
       filter: 'None',
       // bugs: exampleData,
       bugs: [],
-      show: false
+      show: false,
+      newBug: {
+        bugName: '',
+        bugDescription: '',
+        reportedBy: '',
+        createdDate: '',
+        assignedTo: '',
+        threatLevel: '',
+      }
     };
     this.filterHandler = this.filterHandler.bind(this);
     this.getBugs = this.getBugs.bind(this);
@@ -49,7 +57,7 @@ class App extends React.Component {
   }
 
   handleSubmit(e){
-    alert(JSON.stringify(this.state))
+    alert(JSON.stringify(req.body))
     e.preventDefault();
   }
 
@@ -59,7 +67,7 @@ class App extends React.Component {
       headers: {'Content-Type': 'application/json'},
       redirect: 'follow', // manual, *follow, error
       referrerPolicy: 'no-referrer',
-      body:JSON.stringify(data),
+      body:JSON.stringify(),
       })
       .then(res => res.json())
       .catch((err) => {
@@ -70,7 +78,7 @@ class App extends React.Component {
   render() {
     return (
       <main>
-      <Modal show={this.state.show} handleClose={this.hideModal}>
+      <Modal show={this.state.show} handleClose={this.hideModal} create={this.createBug}>
         <form onSubmit={this.handleSubmit}>
 
         </form>
